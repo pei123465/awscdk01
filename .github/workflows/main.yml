@@ -16,4 +16,4 @@ jobs:
           role-to-assume: 'arn:aws:iam::654654329506:role/GitHubActionAssumeRoleWithAction' # 作成した IAM ロールの ARN
 
       # プライベートな S3 バケットを読み取ってみる
-      - run: aws s3 ls s3://nishikawa-test-s3-01
+      - run: aws list-roles
