@@ -3,6 +3,8 @@ name: example
 on:
   push:
 
+env:
+   ROLE_LIST: ""
 jobs:
   s3ls:
     runs-on: ubuntu-latest
@@ -17,5 +19,5 @@ jobs:
 
       # プライベートな S3 バケットを読み取ってみる
       - run: |
-          roleList=aws list-roles
-          echo "実行結果：$roleList"
+          ROLE_LIST=aws list-roles
+          echo "ROLE_LIST：$ROLE_LIST"
