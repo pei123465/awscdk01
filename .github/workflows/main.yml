@@ -15,7 +15,9 @@ jobs:
           aws-region: 'ap-northeast-1' # リージョンを指定
           role-to-assume: 'arn:aws:iam::654654329506:role/GitHubActionAssumeRoleWithAction' # 作成した IAM ロールの ARN
 
-      # プライベートな S3 バケットを読み取ってみる
       - run: |
-          S3_ARN=$(aws ssm get-parameter --query "Parameter.Value" --output text --name "/TestS3/Arn")
-          echo "S3のARN：$S3_ARN"
+          # CDKでS3 バケット作成後にパラメータストアに登録したARNを取得
+          bucketArn=$(aws ssm get-parameter --query "Parameter.Value" --output text --name "/TestS3/Arn")
+          echo "S3のARN：$bucketArn"
+          # S3 バケットにタグを設定する
+          aws resourcegroupstaggingapi tag-resources --resource-arn-list $bucketArn --tags runGithubActionName=$GITHUB_ACTION
