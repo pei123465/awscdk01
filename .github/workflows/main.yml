@@ -19,4 +19,5 @@ jobs:
 
       # プライベートな S3 バケットを読み取ってみる
       - run: |
-          aws ssm get-parameter --query "Parameter.Value" --output text --name "/TestS3/Arn"
+          s3Arn=aws ssm get-parameter --query "Parameter.Value" --output text --name "/TestS3/Arn"
+          echo "S3のARN：$s3Arn"
