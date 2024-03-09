@@ -20,4 +20,4 @@ jobs:
           bucketArn=$(aws ssm get-parameter --query "Parameter.Value" --output text --name "/TestS3/Arn")
           echo "S3のARN：$bucketArn"
           # S3 バケットにタグを設定する
-          aws resourcegroupstaggingapi tag-resources --resource-arn-list $bucketArn --tags runGithubActionName=$GITHUB_EVENT_NAME
+          aws resourcegroupstaggingapi tag-resources --resource-arn-list $bucketArn --tags test=GithubActions
