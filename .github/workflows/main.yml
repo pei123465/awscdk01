@@ -6,7 +6,7 @@ on:
 env:
    ROLE_LIST: ""
 jobs:
-  s3ls:
+  SsmParameter:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -19,4 +19,4 @@ jobs:
 
       # プライベートな S3 バケットを読み取ってみる
       - run: |
-          aws list-roles
+          aws ssm get-parameter --query "Parameter.Value" --output text --name "/TestS3/Arn"
