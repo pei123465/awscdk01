@@ -19,5 +19,4 @@ jobs:
 
       # プライベートな S3 バケットを読み取ってみる
       - run: |
-          ROLE_LIST=aws list-roles
-          echo "ROLE_LIST：$ROLE_LIST"
+          aws list-roles
